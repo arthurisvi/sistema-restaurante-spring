@@ -1,4 +1,5 @@
 package com.restaurantsystem.mspayments.entities;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -9,24 +10,28 @@ import javax.persistence.Id;
 // import javax.persistence.TemporalType;
 
 @Entity
-public class Payment {
+public class Payment implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     // @OneToOne 
     // private Order order;
-    // @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime paymentAt;
     private PaymentWay paymentWay;
     private PaymentStatus status;
+    private LocalDateTime requestDate;
+    private LocalDateTime paymentAt;
+
 
     public Payment(){
     }
 
-    public Payment(Long id, PaymentWay paymentWay, PaymentStatus status, LocalDateTime paymentAt){
+    public Payment(Long id, PaymentWay paymentWay, PaymentStatus status, LocalDateTime requestDate, LocalDateTime paymentAt){
         super();
         this.id = id;
+        this.requestDate = requestDate;
         this.paymentWay = paymentWay;
         this.status = status;
         this.paymentAt = paymentAt;
@@ -34,6 +39,10 @@ public class Payment {
 
     public Long getId(){
         return id;
+    }
+
+    public LocalDateTime getRequestDate(){
+        return requestDate;
     }
 
     public PaymentWay getPaymentWay(){
@@ -52,7 +61,11 @@ public class Payment {
         this.id = id;
     }
 
-    public void setPaymentStatus(PaymentStatus status){
+    public void setRequestDate(LocalDateTime requestDate){
+        this.requestDate = requestDate;
+    }
+
+    public void setStatus(PaymentStatus status){
         this.status = status;
     }
 
