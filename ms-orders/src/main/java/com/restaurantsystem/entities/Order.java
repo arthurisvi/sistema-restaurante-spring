@@ -1,13 +1,14 @@
 package com.restaurantsystem.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_order")
@@ -15,12 +16,16 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String products;
-	@Transient //anotacao para nao salvar esse atributo no banco
+	@Column(length = 500)
+	private ArrayList<Product> products;
 	private Long user_id;
 	private Instant created_at = Instant.now();
 	
-	public Order(String products, Long user_id) {
+	public Order() {
+		
+	}
+	
+	public Order(ArrayList<Product> products, Long user_id) {
 		super();
 		this.products = products;
 		this.user_id = user_id;
@@ -34,19 +39,19 @@ public class Order {
 		this.id = id;
 	}
 
-	public String getProducts() {
+	public ArrayList<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(String products) {
+	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
 
-	public Long getUserId() {
+	public Long getUser_Id() {
 		return user_id;
 	}
 
-	public void setUserId(Long user_id) {
+	public void setUser_Id(Long user_id) {
 		this.user_id = user_id;
 	}
 

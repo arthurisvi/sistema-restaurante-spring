@@ -30,14 +30,14 @@ public class OrderService {
 	
 	public Order createOrder(Order newOrder) {
 		Order order = orderRepository.save(newOrder);
-		OrderUser newOrderUser = new OrderUser(newOrder.getUserId(), order.getId());
+		OrderUser newOrderUser = new OrderUser(newOrder.getUser_Id(), order.getId());
 		orderUserService.createOrderUser(newOrderUser);
 		return order;
 	}
 	
 	public Order updateOrder(Long id, Order updatedOrder) {
 		Order actualOrder = orderRepository.findById(id).get();
-		actualOrder.setUserId(updatedOrder.getUserId());
+		actualOrder.setUser_Id(updatedOrder.getUser_Id());
 		actualOrder.setProducts(updatedOrder.getProducts());
 		return orderRepository.save(actualOrder);
 	}
