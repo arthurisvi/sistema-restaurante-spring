@@ -10,6 +10,7 @@ import com.restaurantsystem.msproducts.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,8 +66,39 @@ public class ProductController {
     }
 
     @PatchMapping(value="/{id}/name")
-    public ResponseEntity<Product> rewriteName(@PathVariable Long id, @RequestBody String rewriteName) { 
-        Product patchedProduct = productService.changeName(id, rewriteName);
+    public ResponseEntity<Product> rewriteName(@PathVariable Long id, @RequestBody String rewritedName) { 
+        Product patchedProduct = productService.changeName(id, rewritedName);
         return ResponseEntity.ok(patchedProduct);
     }
+
+    @PatchMapping(value="/{id}/description")
+    public ResponseEntity<Product> rewriteDescription(@PathVariable Long id, @RequestBody Product rewritedProduct) { 
+        Product patchedProduct = productService.changeDescription(id, rewritedProduct);
+        return ResponseEntity.ok(patchedProduct);
+    }
+
+    @PatchMapping(value="/{id}/imageurl")
+    public ResponseEntity<Product> rewriteImageUrl(@PathVariable Long id, @RequestBody Product rewritedProduct) { 
+        Product patchedProduct = productService.changeImageUrl(id, rewritedProduct);
+        return ResponseEntity.ok(patchedProduct);
+    }
+
+    @PatchMapping(value="/{id}/price")
+    public ResponseEntity<Product> rewritePrice(@PathVariable Long id, @RequestBody Product rewritedProduct) { 
+        Product patchedProduct = productService.changePrice(id, rewritedProduct);
+        return ResponseEntity.ok(patchedProduct);
+    }
+
+    @PatchMapping(value="/{id}/category")
+    public ResponseEntity<Product> rewriteCategory(@PathVariable Long id, @RequestBody Product rewritedProduct) { 
+        Product patchedProduct = productService.changeCategory(id, rewritedProduct);
+        return ResponseEntity.ok(patchedProduct);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
