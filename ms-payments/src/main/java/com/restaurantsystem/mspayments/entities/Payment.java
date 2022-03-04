@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,9 @@ public class Payment implements Serializable{
     private Long id;
     // @OneToOne 
     // private Order order;
+    @Enumerated(EnumType.STRING)
     private PaymentWay paymentWay;
+    @Enumerated(EnumType.STRING)
     private PaymentStatus status;
     private LocalDateTime requestDate;
     private LocalDateTime paymentAt;
