@@ -1,11 +1,11 @@
-package com.restaurantsystem.services;
+package com.restaurantsystem.msorders.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.restaurantsystem.entities.Order;
-import com.restaurantsystem.repositories.OrderRepository;
+import com.restaurantsystem.msorders.entities.Order;
+import com.restaurantsystem.msorders.repositories.OrderRepository;
 
 @Service
 public class OrderService {

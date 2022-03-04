@@ -1,4 +1,4 @@
-package com.restaurantsystem.entities;
+package com.restaurantsystem.msorders.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

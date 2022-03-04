@@ -1,4 +1,4 @@
-package com.restaurantsystem.entities;
+package com.restaurantsystem.msorders.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
