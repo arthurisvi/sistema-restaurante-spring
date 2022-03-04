@@ -5,17 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.restaurantsystem.entities.Order;
-import com.restaurantsystem.entities.OrderUser;
 import com.restaurantsystem.repositories.OrderRepository;
 
 @Service
 public class OrderService {
 	private OrderRepository orderRepository;
-	private OrderUserService orderUserService;
 	
-	public OrderService(OrderRepository orderRepository, OrderUserService orderUserService) {	
+	public OrderService(OrderRepository orderRepository) {	
 		this.orderRepository = orderRepository;
-		this.orderUserService = orderUserService;
 	}
 	
 	public List<Order> getAllOrders() {
@@ -30,14 +27,13 @@ public class OrderService {
 	
 	public Order createOrder(Order newOrder) {
 		Order order = orderRepository.save(newOrder);
-		OrderUser newOrderUser = new OrderUser(newOrder.getUser_Id(), order.getId());
-		orderUserService.createOrderUser(newOrderUser);
+		
 		return order;
 	}
 	
 	public Order updateOrder(Long id, Order updatedOrder) {
 		Order actualOrder = orderRepository.findById(id).get();
-		actualOrder.setUser_Id(updatedOrder.getUser_Id());
+		actualOrder.setUser_id(updatedOrder.getUser_id());
 		actualOrder.setProducts(updatedOrder.getProducts());
 		return orderRepository.save(actualOrder);
 	}
