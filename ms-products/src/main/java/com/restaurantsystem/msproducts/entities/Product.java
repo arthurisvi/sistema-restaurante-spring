@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -22,6 +24,7 @@ public class Product implements Serializable{
     private String name;
     private String imageUrl;
     private BigDecimal price;
+    @Enumerated(EnumType.STRING)
     private Category category;
     private String description;
     
