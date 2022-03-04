@@ -28,6 +28,17 @@ public class Product implements Serializable{
     private Category category;
     private String description;
     
+    public Product(){
+        
+    }
+
+    public Product(String name, String imageUrl, BigDecimal price, Category category, String description) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+    }
 
     public Long getId(){
         return id;
