@@ -1,5 +1,6 @@
 package com.restaurantsystem.msorders.entities;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(length = 500)
+	@Column(length = 2000)
 	private ArrayList<Product> products;
 	private Long user_id;
 	private Instant created_at = Instant.now();
@@ -31,6 +32,14 @@ public class Order {
 		this.user_id = user_id;
 	}
 
+	public BigDecimal getTotal() {
+		BigDecimal total = new BigDecimal(0);
+		for(int i = 0; i < products.size(); i++) {
+			total = total.add(products.get(i).getPrice());
+		}
+		return total;
+	}
+	
 	public Long getId() {
 		return id;
 	}

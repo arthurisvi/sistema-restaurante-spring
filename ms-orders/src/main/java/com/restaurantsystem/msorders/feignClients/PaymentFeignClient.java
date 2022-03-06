@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PaymentFeignClient {
     
     @GetMapping
-    ResponseEntity <List<Payment>> getAllPayments();
+    ResponseEntity<List<Payment>> getAllPayments();
 
     @GetMapping(value= "/{id}")
     ResponseEntity<Payment> findById(@PathVariable Long id);
