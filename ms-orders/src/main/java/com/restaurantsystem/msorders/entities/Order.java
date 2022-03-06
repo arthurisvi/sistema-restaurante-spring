@@ -16,7 +16,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(length = 2000)
+	@Column(length = 5000)
 	private ArrayList<Product> products;
 	private Long user_id;
 	private Instant created_at = Instant.now();
