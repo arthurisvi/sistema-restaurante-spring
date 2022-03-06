@@ -17,21 +17,24 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(length = 2000)
+	@Column(length = 5000)
 	private ArrayList<Product> products;
 	private Long user_id;
 	private Instant created_at = Instant.now();
+	@Column(length = 2000)
+	private Payment payment;
 	
 	public Order() {
 		
 	}
 	
-	public Order(ArrayList<Product> products, Long user_id) {
+	public Order(ArrayList<Product> products, Long user_id, Payment payment) {
 		super();
 		this.products = products;
 		this.user_id = user_id;
+		this.payment = payment;
 	}
-
+	
 	public BigDecimal getTotal() {
 		BigDecimal total = new BigDecimal(0);
 		for(int i = 0; i < products.size(); i++) {
@@ -71,5 +74,14 @@ public class Order {
 	public void setCreated_at(Instant created_at) {
 		this.created_at = created_at;
 	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	
 }

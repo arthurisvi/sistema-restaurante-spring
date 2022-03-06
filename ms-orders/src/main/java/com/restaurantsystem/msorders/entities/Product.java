@@ -3,12 +3,16 @@ package com.restaurantsystem.msorders.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public class Product implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String name;
 	private String imageUrl;
 	private BigDecimal price;
+	@Enumerated(EnumType.STRING)
 	private Category category;
 	private String description;
 	
