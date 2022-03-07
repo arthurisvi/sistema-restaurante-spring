@@ -5,6 +5,7 @@ import java.net.URI;
 import java.util.List;
 
 import com.restaurantsystem.msproducts.services.ProductService;
+import com.restaurantsystem.msproducts.entities.Category;
 import com.restaurantsystem.msproducts.entities.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +45,14 @@ public class ProductController {
     public ResponseEntity<BigDecimal> findPrice(@PathVariable Long id){
         BigDecimal price = productService.findPrice(id);
         return ResponseEntity.ok(price);
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity <List<Product>> findByCategory(@RequestParam("category") Category category){
+
+        List <Product> products = productService.findByCategory(category);
+
+        return ResponseEntity.ok(products);
     }
 
     @PostMapping

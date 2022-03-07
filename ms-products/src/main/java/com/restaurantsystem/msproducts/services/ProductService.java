@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import com.restaurantsystem.msproducts.entities.Category;
 import com.restaurantsystem.msproducts.entities.Product;
 import com.restaurantsystem.msproducts.repository.ProductRepository;
 
@@ -39,6 +40,11 @@ public class ProductService {
     public BigDecimal findPrice(Long id){
         Optional<Product> product = productRepository.findById(id);
         return product.get().getPrice();
+    }
+
+    public List<Product> findByCategory(Category category){
+        List<Product> products = productRepository.findByCategory(category);
+        return products;
     }
 
     public Product changeName(Long id, String name) {
