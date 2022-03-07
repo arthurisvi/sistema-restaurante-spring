@@ -23,6 +23,7 @@ public class Order {
 	private Instant created_at = Instant.now();
 	@Column(length = 2000)
 	private Payment payment;
+	private BigDecimal total;
 	
 	public Order() {
 		
@@ -35,7 +36,7 @@ public class Order {
 		this.payment = payment;
 	}
 	
-	public BigDecimal getTotal() {
+	public BigDecimal totalPrice() {
 		BigDecimal total = new BigDecimal(0);
 		for(int i = 0; i < products.size(); i++) {
 			total = total.add(products.get(i).getPrice());
@@ -81,6 +82,14 @@ public class Order {
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 
 	

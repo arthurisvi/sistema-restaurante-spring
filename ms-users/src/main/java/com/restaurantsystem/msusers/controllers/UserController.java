@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restaurantsystem.msusers.entities.Order;
 import com.restaurantsystem.msusers.entities.User;
 import com.restaurantsystem.msusers.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
+
 	private UserService userService;
 	
 	public UserController(UserService userService) {
@@ -41,6 +43,12 @@ public class UserController {
 		User user = userService.createUser(newUser);
 		return ResponseEntity.ok(user);
 	}
+
+	@PostMapping(value = "/{id}/new-order")
+	public ResponseEntity<Order> makeOrder(@PathVariable Long id, @RequestBody Order order) {
+		Order newOrder = userService.makeOrder(order, id);
+		return ResponseEntity.ok(newOrder);
+	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
@@ -53,4 +61,6 @@ public class UserController {
 		userService.deleteUser(id);
 		return ResponseEntity.noContent().build();
 	}
+
+
 }

@@ -50,7 +50,7 @@ public class OrderService {
 			listProducts.add(product);
 		}
 		newOrder.setProducts(listProducts);
-
+		newOrder.setTotal(newOrder.totalPrice());
 		Order order = orderRepository.save(newOrder);
 		
 		return order;
