@@ -21,19 +21,18 @@ public class Order {
 	private ArrayList<Product> products;
 	private Long user_id;
 	private Instant created_at = Instant.now();
-	@Column(length = 2000)
-	private Payment payment;
+	private Long paymentId = new Payment().getId();
 	private BigDecimal total;
 	
 	public Order() {
 		
 	}
 	
-	public Order(ArrayList<Product> products, Long user_id, Payment payment) {
+	public Order(ArrayList<Product> products, Long user_id, Long paymentId) {
 		super();
 		this.products = products;
 		this.user_id = user_id;
-		this.payment = payment;
+		this.paymentId = paymentId;
 	}
 	
 	public BigDecimal totalPrice() {
@@ -76,12 +75,12 @@ public class Order {
 		this.created_at = created_at;
 	}
 
-	public Payment getPayment() {
-		return payment;
+	public Long getPaymentId() {
+		return paymentId;
 	}
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public BigDecimal getTotal() {

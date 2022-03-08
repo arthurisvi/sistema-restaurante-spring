@@ -39,8 +39,9 @@ public class OrderService {
 	}
 	
 	public Order createOrder(Order newOrder) {
-		Payment payment = paymentController.createPayment(newOrder.getPayment());
-		newOrder.setPayment(payment);
+		Payment payment = new Payment();
+		payment = paymentController.createPayment(payment);
+		newOrder.setPaymentId(payment.getId());
 
 		Product product = new Product();
 		ArrayList<Product> listProducts = new ArrayList<Product>(); 
