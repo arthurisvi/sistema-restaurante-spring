@@ -46,8 +46,14 @@ public class UserController {
 
 	@PostMapping(value = "/{id}/new-order")
 	public ResponseEntity<Order> makeOrder(@PathVariable Long id, @RequestBody Order order) {
-		Order newOrder = userService.makeOrder(order, id);
-		return ResponseEntity.ok(newOrder);
+		try{
+			User user = userService.findById(id);
+			Order newOrder = userService.makeOrder(order, id);
+			return ResponseEntity.ok(newOrder);
+		}
+		catch (Exception e){
+			return ResponseEntity.badRequest().build();
+		}
 	}
 	
 	@PutMapping(value = "/{id}")
