@@ -38,7 +38,7 @@ public class UserService {
 	public User updateUser(Long id, User updatedUser) {
 		User user = userRepository.findById(id).get();
 		user.setName(updatedUser.getName());
-		user.setLogin(updatedUser.getLogin());
+		user.setEmail(updatedUser.getEmail());
 		user.setPassword(updatedUser.getPassword());
 		user.setAddress(updatedUser.getAddress());
 		user.setPhone(updatedUser.getPhone());
